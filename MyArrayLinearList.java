@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 public class MyArrayLinearList {
     int[] arr;
     int size;
@@ -6,25 +7,17 @@ public class MyArrayLinearList {
         arr = new int[capacity];
         size = 0;
     }
-    void add(int val) {
-        arr[size] = val;
-        size++;
-    }
     int max() {
         int max = arr[0];
         for (int i = 1; i < size; i++) {
-            if (arr[i] > max) {
-                max = arr[i];
-            }
+            if (arr[i] > max) max = arr[i];
         }
         return max;
     }
     int min() {
         int min = arr[0];
         for (int i = 1; i < size; i++) {
-            if (arr[i] < min) {
-                min = arr[i];
-            }
+            if (arr[i] < min) min = arr[i];
         }
         return min;
     }
@@ -42,22 +35,13 @@ public class MyArrayLinearList {
         int newSize = 0;
         for (int i = 0; i < size; i++) {
             if (arr[i] % 2 == 0) {
-                arr[newSize] = arr[i];
-                newSize++;
+                arr[newSize++] = arr[i];
             }
         }
         size = newSize;
     }
     void sort() {
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size - 1 - i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
-        }
+        Arrays.sort(arr, 0, size);
     }
     void printList() {
         for (int i = 0; i < size; i++) {
@@ -72,9 +56,9 @@ public class MyArrayLinearList {
         MyArrayLinearList list = new MyArrayLinearList(n);
         System.out.println(n + " тоогоо оруулна уу:");
         for (int i = 0; i < n; i++) {
-            int val = sc.nextInt();
-            list.add(val);
+            list.arr[i] = sc.nextInt();
         }
+        list.size = n;
         System.out.println("\nАнхны жагсаалт:");
         list.printList();
         list.sort();
